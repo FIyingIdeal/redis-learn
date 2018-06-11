@@ -1,5 +1,6 @@
 package com.flyingideal.redislearn.jedis;
 
+import org.junit.After;
 import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,15 @@ public abstract class BaseTest {
 
     @Before
     public void setJedis() {
-        jedis = new Jedis("192.168.99.236");
+        // jedis = new Jedis("192.168.99.236");
+        jedis = new Jedis("192.168.3.53");
         logger.info("redis connect success");
+    }
+
+    @After
+    public void close() {
+        if (jedis != null) {
+            jedis.close();
+        }
     }
 }
